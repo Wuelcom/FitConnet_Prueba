@@ -1,8 +1,8 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
-from backend.app.schemas.rutina import RutinaCreate, RutinaOut, RutinaUpdate
-from backend.app.crud.rutina import get_rutina, get_rutinas, create_rutina, update_rutina, delete_rutina
-from backend.app.database import get_db
+from app.schemas.rutina import RutinaCreate, RutinaOut, RutinaUpdate
+from app.crud.rutina import get_rutina, get_rutinas, create_rutina, update_rutina, delete_rutina
+from app.database import get_db
 
 router = APIRouter(prefix='', tags=['rutinas'])
 

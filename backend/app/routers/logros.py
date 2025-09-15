@@ -1,8 +1,8 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
-from backend.app.schemas.logro import LogroCreate, LogroOut
-from backend.app.crud.logro import get_logro, get_logros, create_logro, delete_logro
-from backend.app.database import get_db
+from app.schemas.logro import LogroCreate, LogroOut
+from app.crud.logro import get_logro, get_logros, create_logro, delete_logro
+from app.database import get_db
 
 router = APIRouter(prefix='', tags=['logros'])
 

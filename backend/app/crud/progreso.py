@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
-from backend.app.models.progreso import ProgresoUsuario
-from backend.app.schemas.progreso import ProgresoCreate
+from app.models.progreso import ProgresoUsuario
+from app.schemas.progreso import ProgresoCreate
 
 def get_progreso(db: Session, id_progress: int):
     return db.query(ProgresoUsuario).filter(ProgresoUsuario.id_progreso==id_progress).first()

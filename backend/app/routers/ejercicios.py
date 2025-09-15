@@ -1,8 +1,8 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
-from backend.app.schemas.ejercicio import EjercicioCreate, EjercicioOut, EjercicioUpdate
-from backend.app.crud.ejercicio import get_ejercicio, get_ejercicios, create_ejercicio, update_ejercicio, delete_ejercicio
-from backend.app.database import get_db
+from app.schemas.ejercicio import EjercicioCreate, EjercicioOut, EjercicioUpdate
+from app.crud.ejercicio import get_ejercicio, get_ejercicios, create_ejercicio, update_ejercicio, delete_ejercicio
+from app.database import get_db
 
 router = APIRouter(prefix='', tags=['ejercicios'])
 

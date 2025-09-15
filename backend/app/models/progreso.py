@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, DECIMAL, DateTime, Text, ForeignKey, func
 from sqlalchemy.orm import relationship
-from backend.app.db.base import Base
+from app.db.base import Base
 
 class ProgresoUsuario(Base):
     __tablename__ = "progreso_usuario"

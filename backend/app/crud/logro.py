@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
-from backend.app.models.logro import Logro
-from backend.app.schemas.logro import LogroCreate
+from app.models.logro import Logro
+from app.schemas.logro import LogroCreate
 
 def get_logro(db: Session, id_logro: int):
     return db.query(Logro).filter(Logro.id_logro==id_logro).first()

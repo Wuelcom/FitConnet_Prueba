@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
-from backend.app.models.dieta import PlanDieta
-from backend.app.schemas.dieta import DietaCreate
+from app.models.dieta import PlanDieta
+from app.schemas.dieta import DietaCreate
 
 def get_dieta(db: Session, id_dieta: int):
     return db.query(PlanDieta).filter(PlanDieta.id_dieta==id_dieta).first()

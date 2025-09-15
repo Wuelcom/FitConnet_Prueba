@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
-from backend.app.models.ejercicio import Ejercicio
-from backend.app.schemas.ejercicio import EjercicioCreate, EjercicioUpdate
+from app.models.ejercicio import Ejercicio
+from app.schemas.ejercicio import EjercicioCreate, EjercicioUpdate
 
 def get_ejercicio(db: Session, ejercicio_id: int):
     return db.query(Ejercicio).filter(Ejercicio.id_ejercicio==ejercicio_id).first()

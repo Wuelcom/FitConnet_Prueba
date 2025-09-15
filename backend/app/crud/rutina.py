@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
-from backend.app.models.rutina import Rutina
-from backend.app.schemas.rutina import RutinaCreate, RutinaUpdate
+from app.models.rutina import Rutina
+from app.schemas.rutina import RutinaCreate, RutinaUpdate
 
 def get_rutina(db: Session, id_rutina: int):
     return db.query(Rutina).filter(Rutina.id_rutina==id_rutina).first()

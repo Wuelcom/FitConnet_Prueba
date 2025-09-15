@@ -1,8 +1,8 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
-from backend.app.schemas.progreso import ProgresoCreate, ProgresoOut
-from backend.app.crud.progreso import get_progreso, get_progresos, create_progreso, delete_progreso
-from backend.app.database import get_db
+from app.schemas.progreso import ProgresoCreate, ProgresoOut
+from app.crud.progreso import get_progreso, get_progresos, create_progreso, delete_progreso
+from app.database import get_db
 
 router = APIRouter(prefix='', tags=['progreso'])
 

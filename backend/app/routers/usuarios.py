@@ -1,9 +1,9 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
-from backend.app.schemas.user import UserCreate, UserOut, UserUpdate
-from backend.app.crud.user import get_user, get_user_by_email, get_users, create_user, update_user, delete_user
-from backend.app.database import get_db
-from backend.app.auth.jwt_handler import verify_token
+from app.schemas.user import UserCreate, UserOut, UserUpdate
+from app.crud.user import get_user, get_user_by_email, get_users, create_user, update_user, delete_user
+from app.database import get_db
+from app.auth.jwt_handler import verify_token
 from fastapi.security import OAuth2PasswordBearer
 
 router = APIRouter(prefix='', tags=['usuarios'])

@@ -1,8 +1,8 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
-from backend.app.schemas.dieta import DietaCreate, DietaOut
-from backend.app.crud.dieta import get_dieta, get_dietas, create_dieta, delete_dieta
-from backend.app.database import get_db
+from app.schemas.dieta import DietaCreate, DietaOut
+from app.crud.dieta import get_dieta, get_dietas, create_dieta, delete_dieta
+from app.database import get_db
 
 router = APIRouter(prefix='', tags=['dietas'])
 

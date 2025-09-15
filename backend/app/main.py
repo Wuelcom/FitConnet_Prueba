@@ -1,20 +1,20 @@
 from fastapi import FastAPI
-from backend.app.db.base import Base
-from backend.app.database import engine
+from app.db.base import Base
+from app.database import engine
 from fastapi.staticfiles import StaticFiles
 
-from backend.app.auth import auth_router
-from backend.app.routers import usuarios, ejercicios, rutinas, dietas, logros, progreso
+# Aquí renombras el router correctamente
+from app.auth.auth_router import router as auth_router
+from app.routers import usuarios, ejercicios, rutinas, dietas, logros, progreso
 
 app = FastAPI(title='FitConnet API')
 
 Base.metadata.create_all(bind=engine)
 
+app.mount('/static', StaticFiles(directory='frontend_static'), name='static')
 
-
-app.mount('/static', StaticFiles(directory='backend/frontend_static'), name='static')
-
-app.include_router(auth_router.router, prefix='/api/auth', tags=['auth'])
+# 🔧 Quitamos el ".router" porque ya son APIRouter directamente
+app.include_router(auth_router, prefix='/api/auth', tags=['auth'])
 app.include_router(usuarios.router, prefix='/api/usuarios', tags=['usuarios'])
 app.include_router(ejercicios.router, prefix='/api/ejercicios', tags=['ejercicios'])
 app.include_router(rutinas.router, prefix='/api/rutinas', tags=['rutinas'])
@@ -24,4 +24,8 @@ app.include_router(progreso.router, prefix='/api/progreso', tags=['progreso'])
 
 @app.get('/')
 def root():
-    return {'message':'FitConnet API running. Open /static/index.html'}
+    return {'message': 'FitConnet API running. Open /static/index.html'}
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run("app.main:app", host="127.0.0.1", port=8000, reload=True)
