@@ -1,6 +1,6 @@
 fastapi
 uvicorn[standard]
-SQLAlchemy==2.0.19
+SQLAlchemy==2.0.31
 pymysql
 alembic
 python-dotenv
