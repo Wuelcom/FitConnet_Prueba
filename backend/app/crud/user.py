@@ -20,7 +20,11 @@ def create_user(db: Session, user_in: UserCreate):
         contrasena=hashed,
         fecha_nacimiento=user_in.fecha_nacimiento,
         telefono=user_in.telefono,
-        id_objetivo=user_in.id_objetivo
+        id_objetivo=user_in.id_objetivo,
+        edad=user_in.edad,
+        peso=user_in.peso,
+        altura=user_in.altura,
+        genero=user_in.genero
     )
     db.add(db_user)
     db.commit()

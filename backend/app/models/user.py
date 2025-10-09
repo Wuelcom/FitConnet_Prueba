@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, DateTime, Date, ForeignKey, func
+from sqlalchemy import Column, Integer, String, DateTime, Date, ForeignKey, func, DECIMAL, Enum
 from sqlalchemy.orm import relationship
 from app.db.base import Base
 
@@ -12,5 +12,9 @@ class Usuario(Base):
     fecha_nacimiento = Column(Date, nullable=True)
     telefono = Column(String(20), nullable=True)
     id_objetivo = Column(Integer, ForeignKey("objetivos.id_objetivo"), nullable=True)
+    edad = Column(Integer, nullable=True)
+    peso = Column(DECIMAL(5,2), nullable=True)
+    altura = Column(DECIMAL(5,2), nullable=True)
+    genero = Column(Enum('M', 'F', 'Otro'), nullable=True)
 
     objetivo = relationship("Objetivo", back_populates="usuarios")

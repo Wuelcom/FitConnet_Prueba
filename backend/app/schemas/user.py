@@ -1,5 +1,5 @@
 from pydantic import BaseModel, EmailStr
-from typing import Optional
+from typing import Optional, Literal
 from datetime import date, datetime
 
 class UserBase(BaseModel):
@@ -8,9 +8,17 @@ class UserBase(BaseModel):
     fecha_nacimiento: Optional[date] = None
     telefono: Optional[str] = None
     id_objetivo: Optional[int] = None
+    edad: Optional[int] = None
+    peso: Optional[float] = None
+    altura: Optional[float] = None
+    genero: Optional[Literal['M', 'F', 'Otro']] = None
 
 class UserCreate(UserBase):
     contrasena: str
+    edad: int
+    peso: float
+    altura: float
+    genero: Literal['M', 'F', 'Otro']
 
 class UserUpdate(BaseModel):
     nombre: Optional[str] = None
@@ -19,6 +27,10 @@ class UserUpdate(BaseModel):
     fecha_nacimiento: Optional[date] = None
     telefono: Optional[str] = None
     id_objetivo: Optional[int] = None
+    edad: Optional[int] = None
+    peso: Optional[float] = None
+    altura: Optional[float] = None
+    genero: Optional[Literal['M', 'F', 'Otro']] = None
 
 class UserOut(UserBase):
     id_usuario: int

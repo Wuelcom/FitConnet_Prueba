@@ -1,61 +1,48 @@
-import React, { useState } from "react";
-import "./Login.css";
-import Registro from "./pages/Registro/Registro";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import Home from "./pages/principal/user/user.jsx";
+import Login from "./pages/login/login";
+import Register from "./pages/register";
+import Dashboard from "./pages/Dashboard";
+import Footer from "./components/Footer";
 
+// Función para proteger rutas (solo accesibles si el usuario está logueado)
+const PrivateRoute = ({ children }) => {
+  const token = localStorage.getItem("token");
+  return token ? children : <Navigate to="/login" />;
+};
 
-export default function Login() {
-  const [correo, setCorreo] = useState("");
-  const [contrasena, setContrasena] = useState("");
-  const [error, setError] = useState("");
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setError("");
-    try {
-      const response = await fetch("http://localhost:8000/auth/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ correo, contrasena }),
-      });
-      if (!response.ok) {
-        throw new Error("Credenciales incorrectas");
-      }
-      const data = await response.json();
-      // Guarda el token en localStorage
-      localStorage.setItem("token", data.access_token);
-      // Redirige al dashboard o página principal
-      window.location.href = "/principal";
-    } catch (err) {
-      setError(err.message);
-    }
-  };
-
+function App() {
   return (
-    <div className="login-container">
-      <form className="login-form" onSubmit={handleSubmit}>
-        <h2>Iniciar sesión</h2>
-        <input
-          type="text"
-          placeholder="Correo"
-          value={correo}
-          onChange={e => setCorreo(e.target.value)}
-          required
-        />
-        <input
-          type="password"
-          placeholder="Contraseña"
-          value={contrasena}
-          onChange={e => setContrasena(e.target.value)}
-          required
-        />
-        <button type="submit">Entrar</button>
-        {error && <p className="error">{error}</p>}
-      </form>
-    </div>
+    <Router>
+      <div className="flex flex-col min-h-screen">
+        {/* Barra de navegación */}
+        <Navbar />
+
+        {/* Contenido principal */}
+        <main className="flex-grow">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+
+            {/* Ruta protegida: Dashboard */}
+            <Route
+              path="/dashboard"
+              element={
+                <PrivateRoute>
+                  <Dashboard />
+                </PrivateRoute>
+              }
+            />
+          </Routes>
+        </main>
+
+        {/* Pie de página */}
+        <Footer />
+      </div>
+    </Router>
   );
 }
 
-<Routes>
-  {/* ...otras rutas */}
-  <Route path="/registro" element={<Registro />} />
-</Routes>
+export default App;
